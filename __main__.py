@@ -31,8 +31,8 @@ import pyglet
 # Constants #
 #############
 
-MOVE_LENGTH = 20
-MOVE_SPEED = 0.1
+MOVE_LENGTH = 200
+MOVE_SPEED = 10
 PROTAGONIST_SCALE = 0.25
 
 
@@ -54,6 +54,11 @@ class HeroLayer(cocos.layer.Layer):
         self.hero.scale = PROTAGONIST_SCALE
         self.add(self.hero, z=1)
 
+    def stop_hero(self):
+        """Stop the movement of the hero sprite"""
+
+        self.hero.stop()
+
     def move_hero(self, key):
         """Move the hero sprite by WSAD keys"""
         move = None
@@ -71,8 +76,12 @@ class HeroLayer(cocos.layer.Layer):
             self.hero.do(move)
 
     def on_key_press(self, key, modifiers):
-        """Handles key pressing"""
+        """Handle key pressing"""
         self.move_hero(pyglet.window.key.symbol_string(key))
+
+    def on_key_release(self, key, modifiers):
+        """Handle key pressing"""
+        self.stop_hero()
 
 #############
 # Functions #
