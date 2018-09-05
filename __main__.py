@@ -22,9 +22,7 @@
 # Imports #
 ###########
 
-
-import cocos
-import pyglet
+from layers import *
 
 
 #############
